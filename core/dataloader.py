@@ -5,7 +5,7 @@ class DataLoader:
         self.file_path = file_path
 
     def load_data(self):
-        df = pd.read_csv(self.filepath)
+        df = pd.read_csv(self.file_path)
 
         #correct datetime parsing
         if 'Date' in df.columns:
@@ -20,5 +20,5 @@ class DataLoader:
             if col not in df.columns:
                 raise ValueError(f"Missing {col} column")
 
-        df = df.ffill.dropna()
+        df = df.ffill().dropna()
         return df
